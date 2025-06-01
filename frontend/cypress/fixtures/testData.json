@@ -1,0 +1,44 @@
+{
+  "validProduct": {
+    "title": "iPhone 15 Pro",
+    "brandId": "60d5ec49eb37df0015d4c9a8",
+    "categoryId": "60d5ec49eb37df0015d4c9a9",
+    "description": "Latest iPhone model with advanced features",
+    "price": "1200",
+    "discount": "10",
+    "stock": "50",
+    "thumbnail": "https://example.com/iphone.jpg",
+    "images": [
+      "https://example.com/iphone1.jpg",
+      "https://example.com/iphone2.jpg",
+      "https://example.com/iphone3.jpg",
+      "https://example.com/iphone4.jpg"
+    ]
+  },
+  "invalidProduct": {
+    "emptyTitle": {
+      "title": "",
+      "price": "1200",
+      "description": "Test description"
+    },
+    "negativePrice": {
+      "title": "Test Product",
+      "price": "-100",
+      "description": "Test description"
+    },
+    "negativeStock": {
+      "title": "Test Product",
+      "price": "100",
+      "stock": "-10",
+      "description": "Test description"
+    }
+  },
+  "searchTerms": {
+    "existing": "iPhone",
+    "nonExistent": "NonExistentProduct",
+    "empty": "",
+    "singleChar": "i",
+    "longString": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "caseInsensitive": "iphone"
+  }
+}
