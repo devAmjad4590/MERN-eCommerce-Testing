@@ -70,18 +70,18 @@ export const ProductUpdate = () => {
             <Stack rowGap={3}>
                 <Stack>
                     <Typography variant='h6' fontWeight={400} gutterBottom>Title</Typography>
-                    <TextField {...register("title",{required:'Title is required',value:selectedProduct.title})}/>
+                    <TextField data-cy="product-title" {...register("title",{required:'Title is required',value:selectedProduct.title})}/>
                 </Stack> 
 
                 <Stack flexDirection={'row'} >
 
                     <FormControl fullWidth>
                         <InputLabel id="brand-selection">Brand</InputLabel>
-                        <Select defaultValue={selectedProduct.brand._id} {...register("brand",{required:"Brand is required"})} labelId="brand-selection" label="Brand">
+                        <Select data-cy="product-brand" defaultValue={selectedProduct.brand._id} {...register("brand",{required:"Brand is required"})} labelId="brand-selection" label="Brand">
                             
                             {
                                 brands.map((brand)=>(
-                                    <MenuItem value={brand._id}>{brand.name}</MenuItem>
+                                    <MenuItem key={brand._id} value={brand._id}>{brand.name}</MenuItem>
                                 ))
                             }
 
@@ -91,11 +91,11 @@ export const ProductUpdate = () => {
 
                     <FormControl fullWidth>
                         <InputLabel id="category-selection">Category</InputLabel>
-                        <Select defaultValue={selectedProduct.category._id} {...register("category",{required:"category is required"})} labelId="category-selection" label="Category">
+                        <Select data-cy="product-category" defaultValue={selectedProduct.category._id} {...register("category",{required:"category is required"})} labelId="category-selection" label="Category">
                             
                             {
                                 categories.map((category)=>(
-                                    <MenuItem value={category._id}>{category.name}</MenuItem>
+                                    <MenuItem key={category._id} value={category._id}>{category.name}</MenuItem>
                                 ))
                             }
 
@@ -107,27 +107,27 @@ export const ProductUpdate = () => {
 
                 <Stack>
                     <Typography variant='h6' fontWeight={400}  gutterBottom>Description</Typography>
-                    <TextField multiline rows={4} {...register("description",{required:"Description is required",value:selectedProduct.description})}/>
+                    <TextField data-cy="product-description" multiline rows={4} {...register("description",{required:"Description is required",value:selectedProduct.description})}/>
                 </Stack>
 
                 <Stack flexDirection={'row'}>
                     <Stack flex={1}>
                         <Typography variant='h6' fontWeight={400}  gutterBottom>Price</Typography>
-                        <TextField type='number' {...register("price",{required:"Price is required",value:selectedProduct.price})}/>
+                        <TextField data-cy="product-price" type='number' {...register("price",{required:"Price is required",value:selectedProduct.price})}/>
                     </Stack>
                     <Stack flex={1}>
                         <Typography variant='h6' fontWeight={400}  gutterBottom>Discount {is480?"%":"Percentage"}</Typography>
-                        <TextField type='number' {...register("discountPercentage",{required:"discount percentage is required",value:selectedProduct.discountPercentage})}/>
+                        <TextField data-cy="product-discount" type='number' {...register("discountPercentage",{required:"discount percentage is required",value:selectedProduct.discountPercentage})}/>
                     </Stack>
                 </Stack>
 
                 <Stack>
                     <Typography variant='h6'  fontWeight={400} gutterBottom>Stock Quantity</Typography>
-                    <TextField type='number' {...register("stockQuantity",{required:"Stock Quantity is required",value:selectedProduct.stockQuantity})}/>
+                    <TextField data-cy="product-stock" type='number' {...register("stockQuantity",{required:"Stock Quantity is required",value:selectedProduct.stockQuantity})}/>
                 </Stack>
                 <Stack>
                     <Typography variant='h6'  fontWeight={400} gutterBottom>Thumbnail</Typography>
-                    <TextField {...register("thumbnail",{required:"Thumbnail is required",value:selectedProduct.thumbnail})}/>
+                    <TextField data-cy="product-thumbnail" {...register("thumbnail",{required:"Thumbnail is required",value:selectedProduct.thumbnail})}/>
                 </Stack>
 
                 <Stack>
@@ -136,7 +136,7 @@ export const ProductUpdate = () => {
                     <Stack rowGap={2}>
                         {
                             selectedProduct.images.map((image,index)=>(
-                                <TextField {...register(`image${index}`,{required:"Image is required",value:image})}/>
+                                <TextField key={index} data-cy={`product-image-${index}`} {...register(`image${index}`,{required:"Image is required",value:image})}/>
                             ))
                         }
                     </Stack>
@@ -148,8 +148,8 @@ export const ProductUpdate = () => {
 
             {/* action area */}
             <Stack flexDirection={'row'} alignSelf={'flex-end'} columnGap={is480?1:2}>
-                <Button size={is480?'medium':'large'} variant='contained' type='submit'>Update</Button>
-                <Button size={is480?'medium':'large'} variant='outlined' color='error' component={Link} to={'/admin/dashboard'}>Cancel</Button>
+                <Button data-cy="submit-product" size={is480?'medium':'large'} variant='contained' type='submit'>Update</Button>
+                <Button data-cy="cancel-product" size={is480?'medium':'large'} variant='outlined' color='error' component={Link} to={'/admin/dashboard'}>Cancel</Button>
             </Stack>
 
 

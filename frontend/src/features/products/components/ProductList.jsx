@@ -219,7 +219,7 @@ export const ProductList = () => {
                                 <FormGroup onChange={handleBrandFilters}>
                                     {
                                         brands?.map((brand)=>(
-                                            <motion.div style={{width:"fit-content"}} whileHover={{x:5}} whileTap={{scale:0.9}}>
+                                            <motion.div key={brand._id} style={{width:"fit-content"}} whileHover={{x:5}} whileTap={{scale:0.9}}>
                                                 <FormControlLabel sx={{ml:1}} control={<Checkbox whileHover={{scale:1.1}} />} label={brand.name} value={brand._id} />
                                             </motion.div>
                                         ))
@@ -240,7 +240,7 @@ export const ProductList = () => {
                                 <FormGroup onChange={handleCategoryFilters}>
                                     {
                                         categories?.map((category)=>(
-                                            <motion.div style={{width:"fit-content"}} whileHover={{x:5}} whileTap={{scale:0.9}}>
+                                            <motion.div key={category._id} style={{width:"fit-content"}} whileHover={{x:5}} whileTap={{scale:0.9}}>
                                                 <FormControlLabel sx={{ml:1}} control={<Checkbox whileHover={{scale:1.1}} />} label={category.name} value={category._id} />
                                             </motion.div>
                                         ))
@@ -294,10 +294,19 @@ export const ProductList = () => {
                     </Stack>
 
                     {/* product grid */}
-                    <Grid gap={is700?1:2} container justifyContent={'center'} alignContent={'center'}>
+                    <Grid data-cy="user-products-grid" gap={is700?1:2} container justifyContent={'center'} alignContent={'center'}>
                         {
                             products.map((product)=>(
-                                <ProductCard key={product._id} id={product._id} title={product.title} thumbnail={product.thumbnail} brand={product.brand.name} price={product.price} handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}/>
+                                <ProductCard 
+                                    data-cy={`user-product-${product._id}`}
+                                    key={product._id} 
+                                    id={product._id} 
+                                    title={product.title} 
+                                    thumbnail={product.thumbnail} 
+                                    brand={product.brand.name} 
+                                    price={product.price} 
+                                    handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+                                />
                             ))
                         }
                     </Grid>

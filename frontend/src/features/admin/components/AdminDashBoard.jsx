@@ -127,7 +127,7 @@ export const AdminDashBoard = () => {
                     <FormGroup onChange={handleBrandFilters}>
                         {
                             brands?.map((brand)=>(
-                                <motion.div style={{width:"fit-content"}} whileHover={{x:5}} whileTap={{scale:0.9}}>
+                                <motion.div key={brand._id} style={{width:"fit-content"}} whileHover={{x:5}} whileTap={{scale:0.9}}>
                                     <FormControlLabel sx={{ml:1}} control={<Checkbox whileHover={{scale:1.1}} />} label={brand.name} value={brand._id} />
                                 </motion.div>
                             ))
@@ -148,7 +148,7 @@ export const AdminDashBoard = () => {
                     <FormGroup onChange={handleCategoryFilters}>
                         {
                             categories?.map((category)=>(
-                                <motion.div style={{width:"fit-content"}} whileHover={{x:5}} whileTap={{scale:0.9}}>
+                                <motion.div key={category._id} style={{width:"fit-content"}} whileHover={{x:5}} whileTap={{scale:0.9}}>
                                     <FormControlLabel sx={{ml:1}} control={<Checkbox whileHover={{scale:1.1}} />} label={category.name} value={category._id} />
                                 </motion.div>
                             ))
@@ -188,20 +188,28 @@ export const AdminDashBoard = () => {
 
         </Stack>
      
-        <Grid gap={2} container flex={1} justifyContent={'center'} alignContent={"center"}>
+        <Grid data-cy="admin-products-grid" gap={2} container flex={1} justifyContent={'center'} alignContent={"center"}>
             {
                 products.map((product)=>(
-                    <Stack>
+                    <Stack key={product._id} data-cy={`admin-product-${product._id}`}>
                         <Stack sx={{opacity:product.isDeleted?.7:1}}>
-                            <ProductCard key={product._id} id={product._id} title={product.title} thumbnail={product.thumbnail} brand={product.brand.name} price={product.price} isAdminCard={true}/>
+                            <ProductCard 
+                                key={product._id} 
+                                id={product._id} 
+                                title={product.title} 
+                                thumbnail={product.thumbnail} 
+                                brand={product.brand.name} 
+                                price={product.price} 
+                                isAdminCard={true}
+                            />
                         </Stack>
                         <Stack paddingLeft={2} paddingRight={2} flexDirection={'row'} justifySelf={'flex-end'} alignSelf={'flex-end'} columnGap={is488?1:2}>
-                            <Button component={Link} to={`/admin/product-update/${product._id}`} variant='contained'>Update</Button>
+                            <Button data-cy={`edit-product-${product._id}`} component={Link} to={`/admin/product-update/${product._id}`} variant='contained'>Update</Button>
                             {
                                 product.isDeleted===true?(
-                                    <Button onClick={()=>handleProductUnDelete(product._id)} color='error' variant='outlined'>Un-delete</Button>
+                                    <Button data-cy={`undelete-product-${product._id}`} onClick={()=>handleProductUnDelete(product._id)} color='error' variant='outlined'>Un-delete</Button>
                                 ):(
-                                    <Button onClick={()=>handleProductDelete(product._id)} color='error' variant='outlined'>Delete</Button>
+                                    <Button data-cy={`delete-product-${product._id}`} onClick={()=>handleProductDelete(product._id)} color='error' variant='outlined'>Delete</Button>
                                 )
                             }
                         </Stack>

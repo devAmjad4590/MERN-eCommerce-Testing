@@ -59,18 +59,18 @@ export const AddProduct = () => {
             <Stack rowGap={3}>
                 <Stack>
                     <Typography variant='h6' fontWeight={400} gutterBottom>Title</Typography>
-                    <TextField {...register("title",{required:'Title is required'})}/>
+                    <TextField data-cy="product-title" {...register("title",{required:'Title is required'})}/>
                 </Stack> 
 
                 <Stack flexDirection={'row'} >
 
                     <FormControl fullWidth>
                         <InputLabel id="brand-selection">Brand</InputLabel>
-                        <Select {...register("brand",{required:"Brand is required"})} labelId="brand-selection" label="Brand">
+                        <Select data-cy="product-brand" {...register("brand",{required:"Brand is required"})} labelId="brand-selection" label="Brand">
                             
                             {
                                 brands.map((brand)=>(
-                                    <MenuItem value={brand._id}>{brand.name}</MenuItem>
+                                    <MenuItem key={brand._id} value={brand._id}>{brand.name}</MenuItem>
                                 ))
                             }
 
@@ -80,11 +80,11 @@ export const AddProduct = () => {
 
                     <FormControl fullWidth>
                         <InputLabel id="category-selection">Category</InputLabel>
-                        <Select {...register("category",{required:"category is required"})} labelId="category-selection" label="Category">
+                        <Select data-cy="product-category" {...register("category",{required:"category is required"})} labelId="category-selection" label="Category">
                             
                             {
                                 categories.map((category)=>(
-                                    <MenuItem value={category._id}>{category.name}</MenuItem>
+                                    <MenuItem key={category._id} value={category._id}>{category.name}</MenuItem>
                                 ))
                             }
 
@@ -96,27 +96,27 @@ export const AddProduct = () => {
 
                 <Stack>
                     <Typography variant='h6' fontWeight={400}  gutterBottom>Description</Typography>
-                    <TextField multiline rows={4} {...register("description",{required:"Description is required"})}/>
+                    <TextField data-cy="product-description" multiline rows={4} {...register("description",{required:"Description is required"})}/>
                 </Stack>
 
                 <Stack flexDirection={'row'}>
                     <Stack flex={1}>
                         <Typography variant='h6' fontWeight={400}  gutterBottom>Price</Typography>
-                        <TextField type='number' {...register("price",{required:"Price is required"})}/>
+                        <TextField data-cy="product-price" type='number' {...register("price",{required:"Price is required"})}/>
                     </Stack>
                     <Stack flex={1}>
                         <Typography variant='h6' fontWeight={400}  gutterBottom>Discount {is480?"%":"Percentage"}</Typography>
-                        <TextField type='number' {...register("discountPercentage",{required:"discount percentage is required"})}/>
+                        <TextField data-cy="product-discount" type='number' {...register("discountPercentage",{required:"discount percentage is required"})}/>
                     </Stack>
                 </Stack>
 
                 <Stack>
                     <Typography variant='h6'  fontWeight={400} gutterBottom>Stock Quantity</Typography>
-                    <TextField type='number' {...register("stockQuantity",{required:"Stock Quantity is required"})}/>
+                    <TextField data-cy="product-stock" type='number' {...register("stockQuantity",{required:"Stock Quantity is required"})}/>
                 </Stack>
                 <Stack>
                     <Typography variant='h6'  fontWeight={400} gutterBottom>Thumbnail</Typography>
-                    <TextField {...register("thumbnail",{required:"Thumbnail is required"})}/>
+                    <TextField data-cy="product-thumbnail" {...register("thumbnail",{required:"Thumbnail is required"})}/>
                 </Stack>
 
                 <Stack>
@@ -124,10 +124,10 @@ export const AddProduct = () => {
 
                     <Stack rowGap={2}>
    
-                        <TextField {...register("image0",{required:"Image is required"})}/>
-                        <TextField {...register("image1",{required:"Image is required"})}/>
-                        <TextField {...register("image2",{required:"Image is required"})}/>
-                        <TextField {...register("image3",{required:"Image is required"})}/>
+                        <TextField data-cy="product-image-0" {...register("image0",{required:"Image is required"})}/>
+                        <TextField data-cy="product-image-1" {...register("image1",{required:"Image is required"})}/>
+                        <TextField data-cy="product-image-2" {...register("image2",{required:"Image is required"})}/>
+                        <TextField data-cy="product-image-3" {...register("image3",{required:"Image is required"})}/>
     
                     </Stack>
 
@@ -137,8 +137,8 @@ export const AddProduct = () => {
 
             {/* action area */}
             <Stack flexDirection={'row'} alignSelf={'flex-end'} columnGap={is480?1:2}>
-                <Button size={is480?'medium':'large'} variant='contained' type='submit'>Add Product</Button>
-                <Button size={is480?'medium':'large'} variant='outlined' color='error' component={Link} to={'/admin/dashboard'}>Cancel</Button>
+                <Button data-cy="submit-product" size={is480?'medium':'large'} variant='contained' type='submit'>Add Product</Button>
+                <Button data-cy="cancel-product" size={is480?'medium':'large'} variant='outlined' color='error' component={Link} to={'/admin/dashboard'}>Cancel</Button>
             </Stack>
 
         </Stack>
